@@ -1,13 +1,15 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
+	import logo from '$lib/images/LogoNoteCatch.png';
 	import github from '$lib/images/github.svg';
+
+	let isloggedin = false;
 </script>
 
 <header>
 	<div class="corner">
 		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
+			<img src={logo} class="img-logo" alt="SvelteKit" />
 		</a>
 	</div>
 
@@ -16,14 +18,29 @@
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
 		<ul>
+			
+			{#if isloggedin}
+			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
+				<a href="/tuner">Mired</a>
+			</li>
+			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
+				<a href="/">Perfil</a>
+			</li>
+			{:else}
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 				<a href="/">Home</a>
 			</li>
+			{/if}
+
+			
 			<li aria-current={$page.url.pathname === '/tuner' ? 'page' : undefined}>
 				<a href="/tuner">Tuner</a>
 			</li>
+			<li aria-current={$page.url.pathname === '/tuner' ? 'page' : undefined}>
+				<a href="/metronome">Metronomo</a>
+			</li>
 			<li aria-current={$page.url.pathname.startsWith('/learn') ? 'page' : undefined}>
-				<a href="/learn">Class</a>
+				<a href="/learn">Clases</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -32,8 +49,8 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
+		<a href="/login" class="login">
+			<button class="boton-login">Iniciar sesión</button>
 		</a>
 	</div>
 </header>
@@ -45,28 +62,20 @@
 	}
 
 	.corner {
-		width: 3em;
+		width: 9em;
 		height: 3em;
 	}
+.img-logo {
+	width: 300px;
 
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
+}
 
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
 
 	nav {
 		display: flex;
 		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
+		--background: rgba(170, 164, 164, 0.7);
+		width: 90%;
 	}
 
 	svg {
@@ -125,5 +134,18 @@
 
 	a:hover {
 		color: var(--color-theme-1);
+	}
+	.login {
+		color: var(--color-theme-1);
+         width: 100%;
+		 height: 100%;
+	}
+
+	.boton-login{
+		background-color: var(--color-theme-1);
+		color: var(--color-text);
+		border: none;
+		border-radius: 0.5rem;
+		padding: 0.5rem;
 	}
 </style>
