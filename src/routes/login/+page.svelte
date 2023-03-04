@@ -1,7 +1,12 @@
-<div class="row justify-content-center mt-5">
+<script>
+	import logo from '$lib/images/LogoNoteCatch.png';
+
+</script>
+
+<div class="row justify-content-center mt-1 login">
     <div class="col-3">
         <form class="form_container">
-            <div class="logo_container"></div>
+          <img src={logo} class="logo_img" alt="logo">
             <div class="title_container">
               <p class="title">Login to your Account</p>
               <span class="subtitle">Get started with our app, just create an account and enjoy the experience.</span>
@@ -63,6 +68,18 @@
 
 
 <style>
+  .login{
+
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo_img{
+    width: 2 00px;
+    height: 100px;
+  }
     .form_container {
   width: fit-content;
   height: fit-content;

@@ -1,6 +1,10 @@
-<div class="row justify-content-center mt-5">
+<script>
+  import imgRobot from "$lib/images/robot-tuner.png";
+</script>
 
-    <div class="col-4">
+<div class="row justify-content-center mt-5 singup_container">
+
+    <div class="col-4 offset-2 mt-5">
         <form class="form">
             <span class="signup">Sign Up</span>
             <input type="email" placeholder="Email address" class="form--input">
@@ -18,10 +22,17 @@
             </button>
         </form>
     </div>
+    <div class="col-4">
+      <img src={imgRobot} alt="">
+    </div>
 </div>
 
 
 <style>
+  .singup_container {
+    height: 100vh;
+    width: 100%;
+  }
     .form {
   background-color: white;
   padding: 3.125em;
@@ -73,7 +84,7 @@
 }
 
 .checkbox, input[type="checkbox"] {
-  accent-color: #639;
+  accent-color: rgb(153, 51, 51);
 }
 
 .form--submit {
@@ -81,15 +92,15 @@
   padding: 0.625em;
   border-radius: 5px;
   color: white;
-  background-color: #639;
-  border: 1px dashed #639;
+  background-color: rgb(112, 9, 9);
+  border: 1px dashed rgb(180, 19, 19);
   cursor: pointer;
 }
 
 .form--submit:hover {
-  color: #639;
-  background-color: white;
-  border: 1px dashed #639;
+  color: rgb(153, 80, 51);
+  background-color: rgb(94, 100, 156);
+  border: 1px dashed rgb(218, 3, 3);
   cursor: pointer;
   transition: 0.5s;
 }
