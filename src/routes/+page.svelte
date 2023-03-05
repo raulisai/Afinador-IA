@@ -121,6 +121,7 @@
 			</div>
 			<div class="col-6">
 				<div class="card mt-5 mb-5">
+					<h4 class="text-center">Gratis para todos</h4>
 					<div class="card-body">
 						La música es esencial para todo el mundo. Creamos Musicca para que todas las personas tengan la oportunidad de aprender música, de manera gratuita y para siempre. Cada mes, millones de personas de más de 150 países utilizan Musicca.
 					</div>
@@ -130,16 +131,37 @@
 	</div>
 </section>
 
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<p>
+					&copy; 2023 Tuner-IA. Todos los derechos reservados a
+					Djoker.
+				</p>
+			</div>
+			<div class="col-md-6 text-md-right">
+				<p>
+					<!-- svelte-ignore a11y-invalid-attribute -->
+					<a href="#">Términos y condiciones</a> |
+					<!-- svelte-ignore a11y-invalid-attribute -->
+					<a href="#">Política de privacidad</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
 
 <style>
 	.inicio {
-		background-image: url(https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+		background-image: url(http://44.204.51.131/contenido/guitarrs-inicio.png);
 		background-size: 100vw 100vh;
 		height: 95vh;
 	}
 	.nameSite {
 		font-size: 5em;
-		color: rgb(214, 219, 223);
+		color: rgb(139, 149, 156);
 	}
 	.labelMusic {
 		font-size: 1.5em;
@@ -213,6 +235,25 @@
 	font-size: 1em;
 
 }
+	
+footer {
+		background-color: #0077b6;
+		color: #fff;
+		padding: 30px 0;
+	}
+
+	footer p {
+		margin: 0;
+	}
+
+	footer a {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	footer a:hover {
+		text-decoration: underline;
+	}
 
 
 
