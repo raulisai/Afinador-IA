@@ -1,4 +1,6 @@
 <script>
+
+    import ACtiviies from './Activities.svelte'
     import imglearn from "$lib/images/learn.svg";
     import mas from "$lib/images/mas.svg";
     import practicar from "$lib/images/practicar.svg";
@@ -38,14 +40,10 @@
         </nav>
     </div>
     <div class="col-6 justify-content-center">
-        <div class="activities">
-            <div class="headLearn">
-                <h4>Seccion 1</h4>
-                <p>Descripcion de la seccion</p>
-            </div>
-        </div>
+    <ACtiviies/>
     </div>
     <div class="col-4 ">
+    
         <div class="row ">
             <div class="col-4">
                 <img src={imgcountries} alt="" srcset="" />
@@ -58,6 +56,34 @@
             <div class="col-4 mt-4">
                 <img src={imgPoints} alt="" srcset="" />
                 <span>90</span>
+            </div>
+        </div>
+        <div class="row mt-4 mb-5 card-anuncio align-items-center">
+            <div class="col-8">
+                <h5>Progreso de EXP</h5>
+            </div>
+            <div class="col-4">
+                <a href="#" class="linkMetas">CAMBIAR META</a>
+            </div>
+            <div class="col-2">
+                <img src={imgcofre} class="imgcofre" alt="" />
+            </div>
+            <div class="col-6">
+                <span class="">Meta diaria</span>
+
+                <div class="progress">
+                    <div
+                        class="progress-bar progress-bar-striped progress-bar-animated"
+                        role="progressbar"
+                        aria-valuenow="75"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        style="width: 75%"
+                    />
+                </div>
+            </div>
+            <div class="col-2 ">
+                <span>75/100EXP</span>
             </div>
         </div>
         <div class="row mt-5  border border-white-50 border-2 card-anuncio">
@@ -80,45 +106,23 @@
         <div class="row mt-4 card-anuncio">
             <div class="">
                 <div class="card-body">
-                    <h5 class="card-title lattermainAnnuncio">Crea tu musica</h5>
+                    <h5 class="card-title lattermainAnnuncio">
+                        Crea tu musica
+                    </h5>
                     <div class="d-inline ">
                         <p class="card-text latterTxtAnnuncio">
-                            En el modo composicion podras experimentar el poder componer
-                            de forma eficiente.
+                            En el modo composicion podras experimentar el poder
+                            componer de forma eficiente.
                         </p>
-                        <img src={imgmusicalcomposotion} class="imgComposition" alt="" />
+                        <img
+                            src={imgmusicalcomposotion}
+                            class="imgComposition"
+                            alt=""
+                        />
                     </div>
 
                     <a href="#" class="btn btn-warning">Crear musica</a>
                 </div>
-            </div>
-        </div>
-        <div class="row mt-4 mb-5 card-anuncio align-items-center">
-            <div class="col-8">
-                <h5>Progreso de EXP</h5>
-            </div>
-            <div class="col-4">
-                <a href="#" class="linkMetas">CAMBIAR META</a>
-            </div>
-            <div class="col-2">
-                <img src={imgcofre} class="imgcofre" alt="" />
-            </div>
-            <div class="col-6">
-                <span class="">Meta diaria</span>
-                
-                <div class="progress">
-                    <div
-                        class="progress-bar progress-bar-striped progress-bar-animated"
-                        role="progressbar"
-                        aria-valuenow="75"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
-                        style="width: 75%"
-                    />
-                </div>
-            </div>
-            <div class="col-2 ">
-                <span>75/100EXP</span>
             </div>
         </div>
     </div>
@@ -157,22 +161,7 @@
         font-size: 1.3rem;
         text-decoration: none;
     }
-    .activities {
-        height: 100px;
-        width: 50%;
-        margin: 0 auto;
-
-        background-color: #ff9600;
-        color: white;
-        font-family: sans-serif, "Roboto", "Helvetica", "Arial";
-        border-radius: 10px;
-        padding: 10px;
-    }
-
-    .activities h4 {
-        font-size: 1.5rem;
-        font-weight: 600;
-    }
+  
     /* seccion de anuncions barra derechas */
 
     .imgnota {
@@ -191,7 +180,6 @@
     }
     .imgComposition {
         width: 250px;
-        
     }
     .btn-register {
         width: 100%;
@@ -214,19 +202,18 @@
         text-decoration: none;
         color: #1889d4;
     }
-    .lattermainAnnuncio{
+    .lattermainAnnuncio {
         font-family: sans-serif, "Roboto", "Helvetica", "Arial";
         font-size: 1.5rem;
         font-weight: 600;
         text-decoration: none;
-        color: #4B4B4B;
+        color: #4b4b4b;
     }
-    .latterTxtAnnuncio{
+    .latterTxtAnnuncio {
         font-family: sans-serif, "Roboto", "Helvetica", "Arial";
         font-size: 1.2rem;
         text-decoration: none;
         color: #4b4b4b59;
         margin-top: 10%;
     }
-  
 </style>
