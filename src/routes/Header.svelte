@@ -1,9 +1,30 @@
 <script>
+// @ts-nocheck
+
 	import { page } from '$app/stores';
 	import logo from '$lib/images/LogoNoteCatch.png';
 	import github from '$lib/images/github.svg';
+	import { isLoggedIn, user } from "../helpers/stores";
+	import { signOut, onAuthStateChanged } from "firebase/auth";
+    import { auth} from "../helpers/firebase";
 
-	let isloggedin = false;
+
+const logout = async () => {
+try {
+await signOut (auth);
+$isLoggedIn = false;
+$user = {};
+} catch (error) {
+console.error(error);
+}
+};
+
+onAuthStateChanged (auth, authUser => {
+$user=authUser
+$isLoggedIn = !!authUser;
+})
+
+	
 </script>
 
 <header>
@@ -19,12 +40,9 @@
 		</svg>
 		<ul>
 			
-			{#if isloggedin}
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/tuner">Mired</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Perfil</a>
+			{#if $isLoggedIn}
+			<li aria-current={$page.url.pathname === '/profile' ? 'page' : undefined}>
+				<a href="/profile">Perfil</a>
 			</li>
 			{:else}
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
@@ -49,9 +67,17 @@
 	</nav>
 
 	<div class="corner">
+		{#if $isLoggedIn}
+		<a href="/" class="login">
+			<button class="boton-login" on:click={logout}>Log Out</button>
+		</a>
+		{:else}
 		<a href="/login" class="login">
 			<button class="boton-login">Iniciar sesión</button>
 		</a>
+			{/if}
+		
+		
 	</div>
 </header>
 

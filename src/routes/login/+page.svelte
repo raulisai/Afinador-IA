@@ -1,12 +1,23 @@
 <script>
 	import logo from '$lib/images/LogoNoteCatch.png';
   import { auth } from '../../helpers/firebase';
-  import { GoogleAuthProvider} from 'firebase/auth';
+  import { GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
+  import {isLoggedIn,user} from '../../helpers/stores';
+  import { goto } from '$app/navigation';
 
-  const login = () => {
+
+  const login = async() => {
+    try{
     console.log('login');
-    const provider = new GoogleAuthProvider();
-
+    const provider = new GoogleAuthProvider(); 
+    const res= await signInWithPopup(auth,provider);
+    $user=res.user;
+    $isLoggedIn=true;
+    console.log(res);
+    goto('/profile');
+    }catch(err){
+      console.log(err);
+    }
   }
 </script>
 
