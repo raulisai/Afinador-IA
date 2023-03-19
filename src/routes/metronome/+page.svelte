@@ -1,8 +1,11 @@
 <script>
   // @ts-nocheck
-  import audio1 from '$lib/sound/tambor_1.mp3';
-  import audio2 from '$lib/sound/tambor_2.mp3';
+  import audio1 from "$lib/sound/tambor_1.mp3";
+  import audio2 from "$lib/sound/tambor_2.mp3";
   import { onMount } from "svelte";
+  import Buttons from "./Buttons.svelte";
+  import imgRobot from "$lib/images/robot-tuner.png";
+  import imbButtonStart from "$lib/images/button-play.webp";
 
   let tempo = "4/4";
   let posTiempo = 0;
@@ -11,8 +14,7 @@
   let intervalId = null;
   let audioFile = audio1;
   let time = Array.from(Array(parseInt(tempo)), () => false);
-    // Inicializamos la variable `color` con un valor predeterminado
-
+  // Inicializamos la variable `color` con un valor predeterminado
   const togglePlay = () => {
     isPlaying = !isPlaying;
     if (isPlaying) {
@@ -21,19 +23,16 @@
       stop();
     }
   };
-
   const start = () => {
     const intervalMs = 60000 / bpm;
     intervalId = setInterval(() => {
       time = time.map((_, i) => i % 2 === 0);
-      posTiempo == time.length - 1 ? (posTiempo = 0) :posTiempo++;
+      posTiempo == time.length - 1 ? (posTiempo = 0) : posTiempo++;
       posTiempo == 0 ? (audioFile = audio1) : (audioFile = audio2);
       let audio = new Audio(audioFile);
       audio.play();
-      
     }, intervalMs);
   };
-
   const stop = () => {
     clearInterval(intervalId);
     intervalId = null;
@@ -59,21 +58,38 @@
   });
 </script>
 
-<div class="container mt-5">
-
+<div class="container mt-5 text-center">
   <div class="row align-items-center mb-3">
-    {#each time as isOn, i}
-      <div
-        class="col"
-        style="height: 20px; border: 1px solid #000; {i == posTiempo ? 'background-color:white' : 'background-color:blue'} "
-        id="beat-{i}"
-      />
-    {/each}
+    <Buttons />
+    <div class="row align-items-center">
+      <div class="col-8">
+        <div class="row justify-content-center">
+          <div class="col align-self-center">
+          <span>{bpm} BPM</span>
+          </div>
+        </div>
+        <div class="row mt-5">
+          {#each time as isOn, i}
+            <div class="col">
+              <div
+                class="rounded-circle p-0 circleMetronome"
+                style="{i == posTiempo ? 'background-color:#a0ce8b': 'background-color:#7ED5FF'} "
+                id="beat-{i}"
+              />
+            </div>
+          {/each}
+        </div>
+      </div>
+      <div class="col-4">
+        <img src={imgRobot} alt="" />
+      </div>
+    </div>
   </div>
-
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary me-2" on:click={togglePlay}>
+      
+      <button class="btn me-2" on:click={togglePlay}>
+        <img src={imbButtonStart} class="imgStart" alt="">
         {isPlaying ? "Stop" : "Start"}
       </button>
       <select class="form-select me-2" value={tempo} on:change={selectTempo}>
@@ -94,3 +110,21 @@
     </div>
   </div>
 </div>
+
+
+<style>
+  .circleMetronome {
+    height: 100px;
+    width: 50%;
+    background-color: #a0ce8b;
+    border-radius: 50%;
+    border: 1px solid #7ED5FF;
+  }
+
+  .imgStart {
+    width: 50px;
+    height: 50px;
+  }
+
+  
+</style>
