@@ -1,30 +1,27 @@
 <script>
-// @ts-nocheck
+	// @ts-nocheck
 
-	import { page } from '$app/stores';
-	import logo from '$lib/images/LogoNoteCatch.png';
-	import github from '$lib/images/github.svg';
+	import { page } from "$app/stores";
+	import logo from "$lib/images/LogoNoteCatch.png";
+	import github from "$lib/images/github.svg";
 	import { isLoggedIn, user } from "../helpers/stores";
 	import { signOut, onAuthStateChanged } from "firebase/auth";
-    import { auth} from "../helpers/firebase";
+	import { auth } from "../helpers/firebase";
 
+	const logout = async () => {
+		try {
+			await signOut(auth);
+			$isLoggedIn = false;
+			$user = {};
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-const logout = async () => {
-try {
-await signOut (auth);
-$isLoggedIn = false;
-$user = {};
-} catch (error) {
-console.error(error);
-}
-};
-
-onAuthStateChanged (auth, authUser => {
-$user=authUser
-$isLoggedIn = !!authUser;
-})
-
-	
+	onAuthStateChanged(auth, (authUser) => {
+		$user = authUser;
+		$isLoggedIn = !!authUser;
+	});
 </script>
 
 <header>
@@ -34,30 +31,53 @@ $isLoggedIn = !!authUser;
 		</a>
 	</div>
 
-	<nav>
+	<nav class="navinicio">
 		<svg viewBox="0 0 2 3" aria-hidden="true">
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
-		<ul>
-			
+		<ul class="ulinicio">
 			{#if $isLoggedIn}
-			<li aria-current={$page.url.pathname === '/profile' ? 'page' : undefined}>
-				<a href="/profile">Perfil</a>
-			</li>
+				<li
+					class="liInicio"
+					aria-current={$page.url.pathname === "/profile"
+						? "page"
+						: undefined}
+				>
+					<a href="/profile">Perfil</a>
+				</li>
 			{:else}
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>
+				<li
+					class="liInicio"
+					aria-current={$page.url.pathname === "/"
+						? "page"
+						: undefined}
+				>
+					<a href="/">Home</a>
+				</li>
 			{/if}
 
-			
-			<li aria-current={$page.url.pathname === '/tuner' ? 'page' : undefined}>
+			<li
+				class="liInicio"
+				aria-current={$page.url.pathname === "/tuner"
+					? "page"
+					: undefined}
+			>
 				<a href="/tuner">Tuner</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/tuner' ? 'page' : undefined}>
+			<li
+				class="liInicio"
+				aria-current={$page.url.pathname === "/tuner"
+					? "page"
+					: undefined}
+			>
 				<a href="/metronome">Metronomo</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith('/learn') ? 'page' : undefined}>
+			<li
+				class="liInicio"
+				aria-current={$page.url.pathname.startsWith("/learn")
+					? "page"
+					: undefined}
+			>
 				<a href="/learn">Clases</a>
 			</li>
 		</ul>
@@ -68,16 +88,44 @@ $isLoggedIn = !!authUser;
 
 	<div class="corner">
 		{#if $isLoggedIn}
-		<a href="/" class="login">
-			<button class="boton-login" on:click={logout}>Log Out</button>
-		</a>
+			<ul style="list-style: none;">
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle login"
+						href="/"
+						role="button"
+						data-bs-toggle="dropdown"
+						aria-expanded="false"
+					>
+						{$user.displayName.split(" ")[0][0] +
+							$user.displayName.split(" ")[1][0]}
+						<img
+							class="imgUser"
+							width="50px"
+							src={$user.photoURL}
+							alt={$user.displayName}
+						/>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="#">Perfil</a></li>
+						<li>
+							<a class="dropdown-item" href="#">Configuracion</a>
+						</li>
+						<li>
+							<a class="dropdown-item login" href="/">
+								<button class="boton-login" on:click={logout}
+									>Log Out</button
+								>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
 		{:else}
-		<a href="/login" class="login">
-			<button class="boton-login">Iniciar sesión</button>
-		</a>
-			{/if}
-		
-		
+			<a href="/login" class="login">
+				<button class="boton-login">Iniciar sesión</button>
+			</a>
+		{/if}
 	</div>
 </header>
 
@@ -91,13 +139,11 @@ $isLoggedIn = !!authUser;
 		width: 9em;
 		height: 3em;
 	}
-.img-logo {
-	width: 300px;
+	.img-logo {
+		width: 300px;
+	}
 
-}
-
-
-	nav {
+	.navinicio {
 		display: flex;
 		justify-content: center;
 		--background: rgba(170, 164, 164, 0.7);
@@ -114,7 +160,7 @@ $isLoggedIn = !!authUser;
 		fill: var(--background);
 	}
 
-	ul {
+	.ulinicio {
 		position: relative;
 		padding: 0;
 		margin: 0;
@@ -127,14 +173,14 @@ $isLoggedIn = !!authUser;
 		background-size: contain;
 	}
 
-	li {
+	.liInicio {
 		position: relative;
 		height: 100%;
 	}
 
-	li[aria-current='page']::before {
+	.liInicio[aria-current="page"]::before {
 		--size: 6px;
-		content: '';
+		content: "";
 		width: 0;
 		height: 0;
 		position: absolute;
@@ -144,7 +190,7 @@ $isLoggedIn = !!authUser;
 		border-top: var(--size) solid var(--color-theme-1);
 	}
 
-	nav a {
+	.navinicio a {
 		display: flex;
 		height: 100%;
 		align-items: center;
@@ -163,11 +209,11 @@ $isLoggedIn = !!authUser;
 	}
 	.login {
 		color: var(--color-theme-1);
-         width: 100%;
-		 height: 100%;
+		width: 100%;
+		height: 100%;
 	}
 
-	.boton-login{
+	.boton-login {
 		background-color: var(--color-theme-1);
 		color: var(--color-text);
 		border: none;

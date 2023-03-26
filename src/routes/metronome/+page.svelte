@@ -57,7 +57,6 @@
     // initialize component here
   });
 </script>
-
 <div class="container mt-5 text-center">
   <div class="row align-items-center mb-3">
     <Buttons />
@@ -87,7 +86,6 @@
   </div>
   <div class="row">
     <div class="col">
-      
       <button class="btn me-2" on:click={togglePlay}>
         <img src={imbButtonStart} class="imgStart" alt="">
         {isPlaying ? "Stop" : "Start"}
@@ -110,8 +108,6 @@
     </div>
   </div>
 </div>
-
-
 <style>
   .circleMetronome {
     height: 100px;
