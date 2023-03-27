@@ -1,6 +1,6 @@
 <script>
 
-    import ACtiviies from './Activities.svelte'
+    import Activiies from './Activities.svelte'
     import imglearn from "$lib/images/learn.svg";
     import mas from "$lib/images/mas.svg";
     import practicar from "$lib/images/practicar.svg";
@@ -40,7 +40,7 @@
         </nav>
     </div>
     <div class="col-6 justify-content-center">
-    <ACtiviies/>
+    <Activiies/>
     </div>
     <div class="col-4 ">
     
