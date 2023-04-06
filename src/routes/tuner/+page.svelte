@@ -3,6 +3,11 @@
 	<meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="text-column">
-
-</div>
+<script>
+	import Mastil from './Mastil.svelte';
+  </script>
+  
+  <div class="container">
+	<Mastil />
+  </div>
+  
