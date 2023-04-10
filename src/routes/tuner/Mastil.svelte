@@ -1,91 +1,78 @@
 <script>
-// @ts-nocheck
-//constantes
+  // @ts-nocheck
+
+  export let fret;
+
+  let noteFret = fret;
   const singleFretMarkPositions = [3, 5, 7, 9, 15, 17, 19, 21];
   const doubleFretMarkPositions = [12, 24];
-  const notesFlat = [
-    "C",
-    "Db",
-    "D",
-    "Eb",
-    "E",
-    "F",
-    "Gb",
-    "G",
-    "Ab",
-    "A",
-    "Bb",
-    "B",
-  ];
-  const notesSharp = [
-    "C",
-    "C#",
-    "D",
-    "D#",
-    "E",
-    "F",
-    "F#",
-    "G",
-    "G#",
-    "A",
-    "A#",
-    "B",
-  ];
-  const instrumentTuningPresets = {
-    "Guitar": [4, 11, 7, 2, 9, 4],
-    "Bass (5 strings)": [7, 2, 9, 4, 11],
-    "violin": [7, 2, 9, 4],
-    "cello": [9, 4, 0, 7],
-  };
-
-  let numberOfFrets = 12;
-  let accidentals = "sharps";
-  let selectedInstrument = "Guitar";
-  let numberOfStrings = instrumentTuningPresets[selectedInstrument].length;
-
-
-  let noteFret = [];
-  let note= " ";
-  let noteclean= note;//.toString().substr(0, note.length - 1)
-
-  function generateNoteNames(noteIndex, accidentals) {
-    noteIndex = noteIndex % 12;
-    let noteName;
-    if (accidentals === "flats") {
-      noteName = notesFlat[noteIndex];
-    } else if (accidentals === "sharps") {
-      noteName = notesSharp[noteIndex];
-    }
-    return noteName;
-  }
-  for (let i = 0; i < numberOfStrings; i++) {
-    
-  
-    noteFret = [];
-
-    for (let fret = 0; fret <= numberOfFrets; fret++) {
-      let noteName = generateNoteNames(
-        fret + instrumentTuningPresets[selectedInstrument][i],
-        accidentals
-      );
-        noteFret.push({
-            numberOfStrings: numberOfStrings,
-            fret: fret,
-            noteName: noteName,
-            noteclean: noteclean//.toString().substr(0, noteName.length - 1)
-        });
-  }
-}
-        
 </script>
+
 <!--  -->
 <div class="row">
-    <div class="col-12">
-        {#each noteFret as note}
-        <div class="string">
-{console.log(noteFret)}
+  
+    {#each noteFret as fret}
+      <div class="string grid col-12">
+        {#each fret.notesString as note}
+
+        {#if note.noteName === 'E'}
+        <div class="fret">
+          <div class="str mt-2">{note.noteName}</div>
         </div>
+        {:else if note.noteName === 'A'}
+        <div class="fret">
+          <div class="str mt-2">{note.noteName}</div>
+        </div>
+        {:else}
+        <div class="fret">
+          <div class="str mt-2">{note.noteName}</div>
+        </div>
+        {/if}
+        
+
+         
         {/each}
-       
-    </div>
+      </div>
+    {/each}
+
 </div>
+
+<style>
+
+  .fret {
+    min-width: 40px;
+    width: 20%;
+    height: 30px;
+    border-left: 0.5rem solid rgba(97, 97, 97, 0.199);
+    border-image: linear-gradient(to left, #bbb, #fff, #bbb) 1 100%;
+    background-color: #f2d4ad;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .string {
+    width: 100%;
+    display: flex;
+  }
+
+
+  .str {
+    width: 120%;
+    margin-left: -10px;
+    color: rgb(129, 128, 128);
+    height: 10px;
+    background: linear-gradient(#eee, #999);
+    box-shadow: 30px 3px 10px #806233;
+  }
+
+  .fret:first-child {
+    background: #161717e5;
+    color: #fff;
+    min-width: 80px;
+    max-width: 120px;
+    border-right: 12px solid;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-image: linear-gradient(to left, #bbb, #fff, #bbb) 1 100%;
+  }
+</style>
